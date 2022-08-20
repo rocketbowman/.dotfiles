@@ -1,0 +1,1 @@
+inoremap <special> jk <ESC>
