@@ -47,4 +47,4 @@ export GIT_SSL_CAINFO="$SSL_CERT_FILE"
 
 # Aliases
 alias emc="emacsclient -c -a 'vim' &"
-
+alias emacsd="/home/kyle/.guix-profile/bin/emacs --daemon"
