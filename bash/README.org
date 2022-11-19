@@ -160,6 +160,16 @@ variables to override the default certificate location. More information about
 Guix SSL certs can be found here:
 https://guix.gnu.org/manual/en/html_node/X_002e509-Certificates.html#X_002e509-Certificates
 
+** Locales
+Set the locale for the Guix libc instance according to section 2.6.1 found here:
+https://guix.gnu.org/manual/en/html_node/Application-Setup.html. You must first 
+=guix install glibc-locales= OR =guix install glibc-utf8-locales=. The latter 
+has a smaller footprint. When you install the locale library, it might signal to guix that certain packages have updated dependencies. It's a good idea to run =guix upgrade= to rebuild those packages with the updated dependency. (For example, in stow, the locale warnings did not resolve until I updgraded stow itself.)
+
+#+begin_src bash
+export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
+#+end_src
+
 #+begin_src bash
 export SSL_CERT_DIR="$HOME/.guix-profile/etc/ssl/certs"
 export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
