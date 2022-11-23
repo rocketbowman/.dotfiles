@@ -76,9 +76,58 @@
   :ensure t
   :config (evil-collection-init))
 
-;; Need general.el for global keybinding 
+;; Global Keybindings
+(use-package general)
 
-;; Which-key shows keybindings based on context
+;; General
+(general-define-key
+ :states '(normal visual insert emacs)
+ :prefix "SPC"
+ :non-normal-prefix "C-SPC"
+ :keymaps 'override
+
+ ":" 'execute-extended-command
+ "." 'find-file
+ "w" evil-window-map
+ "h" help-map)
+
+(general-define-key
+ :states '(normal visual insert emacs)
+ :prefix "SPC"
+ :non-normal-prefix "C-SPC"
+ :keymaps 'override
+
+ ;; Buffers
+ "b" '(:ignore t :which-key "Buffers")
+ "bb" 'bury-buffer
+ "bi" 'ibuffer
+ "bk" 'kill-current-buffer
+ "bp" 'previous-buffer
+ "bn" 'next-buffer
+ "bN" 'new-buffer
+ "br" 'revert-buffer
+ "bR" 'rename-buffer
+ "bs" 'basic-save-buffer)
+
+;; Code: <leader> c - probably mode-dependent
+;; Workspace: <leader> <TAB>
+
+;; File
+(general-define-key
+ :states '(normal visual insert emacs)
+ :prefix "SPC"
+ :non-normal-prefix "C-SPC"
+ :keymaps 'override
+
+ ;; Buffers
+ "f" '(:ignore t :which-key "Files")
+ "ff" 'find-file
+ "fl" 'locate
+ "fs" 'save-buffer
+ "fS" 'write-file
+ "fr" 'recentf-open-file)
+
+ ;; Which-key shows keybindings based on context
 (use-package which-key
   :config (which-key-mode))
 
