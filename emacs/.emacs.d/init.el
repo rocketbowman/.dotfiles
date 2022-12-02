@@ -16,7 +16,7 @@
 (tool-bar-mode -1)          ; Disable the toolbar
 (tooltip-mode -1)           ; Disable tooltips
 (set-fringe-mode 10)        ; Give some breathing room
-(menu-bar-mode -1)          ; Disable the menu bar
+;(menu-bar-mode -1)          ; Disable the menu bar
 
 (column-number-mode)
 (global-display-line-numbers-mode t)
@@ -67,7 +67,6 @@
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
   :config 
-  (define-key evil-insert-state-map (kbd "jk") 'evil-normal-state)
   (evil-mode 1))
 
 ;;; Use Evil keybindings (almost) everywhere.
@@ -76,8 +75,24 @@
   :ensure t
   :config (evil-collection-init))
 
+;; Evil Org Mode
+(use-package evil-org
+  :ensure t
+  :after org
+  :hook (org-mode . (lambda () evil-org-mode))
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+
 ;; Global Keybindings
-(use-package general)
+(use-package general
+  :config
+  (general-evil-setup))
+
+;; Map jk to enter normal state 
+(general-imap "j" (general-key-dispatch '(lambda () "Insert 'j' if 'k' is not next" (interactive)(insert "j"))
+		    :timeout 0.25
+		    "k" 'evil-normal-state))
 
 ;; General
 (general-define-key
@@ -88,6 +103,7 @@
 
  ":" 'execute-extended-command
  "." 'find-file
+ "u" 'universal-argument
  "w" evil-window-map
  "h" help-map)
 
@@ -101,10 +117,10 @@
  "b" '(:ignore t :which-key "Buffers")
  "bb" 'bury-buffer
  "bi" 'ibuffer
+ "bf" 'switch-to-buffer
  "bk" 'kill-current-buffer
  "bp" 'previous-buffer
  "bn" 'next-buffer
- "bN" 'new-buffer
  "br" 'revert-buffer
  "bR" 'rename-buffer
  "bs" 'basic-save-buffer)
@@ -119,7 +135,7 @@
  :non-normal-prefix "C-SPC"
  :keymaps 'override
 
- ;; Buffers
+ ;; Files
  "f" '(:ignore t :which-key "Files")
  "ff" 'find-file
  "fl" 'locate
@@ -131,4 +147,6 @@
 (use-package which-key
   :config (which-key-mode))
 
-;; Look into Vertico+ for completion framework
+;; Completion framework
+(use-package vertico
+  :init(vertico-mode))
