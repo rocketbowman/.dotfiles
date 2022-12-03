@@ -94,24 +94,27 @@
 		    :timeout 0.25
 		    "k" 'evil-normal-state))
 
-;; General
-(general-define-key
- :states '(normal visual insert emacs)
- :prefix "SPC"
- :non-normal-prefix "C-SPC"
- :keymaps 'override
+;; Create global keybinding definition
+(general-create-definer robo-leader-def
+  :states '(normal visual insert emacs)
+  :prefix "SPC"
+  :non-normal-prefix "C-SPC"
+  )
 
+;; Create local keybinding definition
+(general-create-definer robo-local-leader-def
+  :states '(normal visual insert emacs)
+  :prefix "SPC m"
+  :non-normal-prefix "C-SPC m"
+  )
+
+(robo-leader-def 
+ ";" 'pp-eval-expression
  ":" 'execute-extended-command
  "." 'find-file
  "u" 'universal-argument
- "w" evil-window-map
- "h" help-map)
-
-(general-define-key
- :states '(normal visual insert emacs)
- :prefix "SPC"
- :non-normal-prefix "C-SPC"
- :keymaps 'override
+ "w" '(evil-window-map  :which-key "Windows")
+ "h" '(:keymap help-map :which-key "Help")
 
  ;; Buffers
  "b" '(:ignore t :which-key "Buffers")
@@ -123,17 +126,10 @@
  "bn" 'next-buffer
  "br" 'revert-buffer
  "bR" 'rename-buffer
- "bs" 'basic-save-buffer)
+ "bs" 'basic-save-buffer
 
 ;; Code: <leader> c - probably mode-dependent
 ;; Workspace: <leader> <TAB>
-
-;; File
-(general-define-key
- :states '(normal visual insert emacs)
- :prefix "SPC"
- :non-normal-prefix "C-SPC"
- :keymaps 'override
 
  ;; Files
  "f" '(:ignore t :which-key "Files")
