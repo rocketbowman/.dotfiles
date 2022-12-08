@@ -77,12 +77,13 @@
 
 ;; Evil Org Mode
 (use-package evil-org
-  :ensure t
-  :after org
-  :hook (org-mode . (lambda () evil-org-mode))
+  :ensure
+  :hook (org-mode . evil-org-mode)
+  :init
+  (defvar evil-org-use-additional-insert t)
   :config
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
+  (add-hook 'evil-org-mode-hook #'evil-normalize-keymaps)
+  (evil-org-set-key-theme))
 
 ;; Global Keybindings
 (use-package general
