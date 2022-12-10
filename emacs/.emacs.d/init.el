@@ -147,3 +147,8 @@
 ;; Completion framework
 (use-package vertico
   :init(vertico-mode))
+
+;; Anki - this is an experiment. Change the default deck when it's ready.
+(use-package org-anki
+  :after org
+  :config (customize-set-variable 'org-anki-default-deck "Deprecated"))
