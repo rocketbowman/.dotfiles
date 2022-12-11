@@ -152,3 +152,10 @@
 (use-package org-anki
   :after org
   :config (customize-set-variable 'org-anki-default-deck "Deprecated"))
+
+;; Zettelkasten
+(use-package org-roam
+  :ensure t
+  :config
+  (setq org-roam-directory "~/notes/rocketbowman")
+  (org-roam-db-autosync-enable))
