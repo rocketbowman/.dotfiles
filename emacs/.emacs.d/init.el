@@ -140,6 +140,31 @@
  "fS" 'write-file
  "fr" 'recentf-open-file)
 
+(robo-local-leader-def
+  :keymaps 'org-mode-map
+  "h" 'org-toggle-heading
+  "i" 'org-toggle-item
+
+  "b" '(:ignore t :which-key "Tables")
+  "b-" 'org-table-insert-hline
+  "bi" '(:ignore t :which-key "Insert")
+  "bic" 'org-table-insert-column
+  "bih" 'org-table-insert-hline
+  "bir" 'org-table-insert-row
+
+  "g" 'org-goto
+
+  "m" '(:ignore t :which-key "Anki")
+  "mb" 'org-anki-browse-entry
+  "mc" 'org-anki-cloze-dwim
+  "md" 'org-anki-delete-entry
+  ;"mD" 'org-anki-delete-all
+  "ms" 'org-anki-sync-entry
+  "mS" 'org-anki-sync-all
+  "mu" 'org-anki-update-entry
+  "mU" 'org-anki-update-all
+  )
+
  ;; Which-key shows keybindings based on context
 (use-package which-key
   :config (which-key-mode))
@@ -147,6 +172,7 @@
 ;; Completion framework
 (use-package vertico
   :init(vertico-mode))
+
 
 ;; Anki - this is an experiment. Change the default deck when it's ready.
 (use-package org-anki
