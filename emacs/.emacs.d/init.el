@@ -185,3 +185,16 @@
   :config
   (setq org-roam-directory "~/notes/rocketbowman")
   (org-roam-db-autosync-enable))
+
+;; Snippets
+(use-package yasnippet
+  :ensure t
+  :hook ((text-mode . yas-minor-mode-on) 
+         (prog-mode . yas-minor-mode-on)
+         (conf-mode . yas-minor-mode-on)
+         (snippet-mode . yas-minor-mode-on))
+  :init
+  (setq yas-snippet-dir "~/.emacs.d/snippets"))
+
+(use-package yasnippet-snippets
+  :ensure t)
