@@ -1,0 +1,6 @@
+# name: Org-anki Q&A 
+# key: qa
+# --
+* Q: $1
+A: $0 
+

@@ -194,7 +194,10 @@
          (conf-mode . yas-minor-mode-on)
          (snippet-mode . yas-minor-mode-on))
   :init
-  (setq yas-snippet-dir "~/.emacs.d/snippets"))
+  (setq yas-snippet-dirs
+	'("~/.emacs.d/snippets"
+	  "~/.emacs.d/straight/build/yasnippet-snippets/snippets")))
 
-(use-package yasnippet-snippets
-  :ensure t)
+;; Use this to install yasnippet-snippets
+;(use-package yasnippet-snippets
+;  :ensure t)
