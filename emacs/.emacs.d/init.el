@@ -201,3 +201,18 @@
 ;; Use this to install yasnippet-snippets
 ;(use-package yasnippet-snippets
 ;  :ensure t)
+
+; (use-package evil-cleverparens
+;   :ensure t
+;   :hook (emacs-lisp-mode . evil-cleverparens-mode))
+; 
+; (use-package rainbow-delimiters
+;   :ensure t
+;   :hook (prog-mode . rainbow-delimiters-mode))
+; 
+; (use-package geiser
+;   :hook (scheme-mode . geiser-mode)
+; 
+; (use-package geiser-guile
+;   :after geiser
+;   :init (setq geiser-guile-binary "~/.guix-profile/bin/guile"))
