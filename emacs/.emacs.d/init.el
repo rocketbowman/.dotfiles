@@ -66,7 +66,9 @@
   :init 
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
-  :config 
+  (setq evil-respect-visual-line-mode t)
+  :config
+  (add-hook 'text-mode-hook #'visual-line-mode)
   (evil-mode 1))
 
 ;;; Use Evil keybindings (almost) everywhere.
