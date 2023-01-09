@@ -85,7 +85,14 @@
   (defvar evil-org-use-additional-insert t)
   :config
   (add-hook 'evil-org-mode-hook #'evil-normalize-keymaps)
-  (evil-org-set-key-theme))
+  (evil-org-set-key-theme)
+  ; Open link in place instead of new window - this is general org, not evil-org
+  (setf (cdr (assoc 'file org-link-frame-setup)) 'find-file)
+  :general
+  (:keymaps 'evil-normal-state-map
+	    "gx" 'org-open-at-point
+	    "g]" 'org-next-link
+	    "g[" 'org-previous-link))
 
 ;; Global Keybindings
 (use-package general
@@ -165,6 +172,12 @@
   "mS" 'org-anki-sync-all
   "mu" 'org-anki-update-entry
   "mU" 'org-anki-update-all
+
+  "r" '(:ignore t :which-key "Roam")
+  "r." 'org-roam-node-find
+  "rt" 'org-roam-buffer-toggle
+  "ri" 'org-roam-node-insert
+  "rf" 'org-roam-node-find
   )
 
  ;; Which-key shows keybindings based on context
@@ -186,7 +199,16 @@
   :ensure t
   :config
   (setq org-roam-directory "~/notes/rocketbowman")
-  (org-roam-db-autosync-enable))
+  (org-roam-db-autosync-enable)
+					; Make backlinks buffer stick to right side of screen
+  (add-to-list 'display-buffer-alist
+	       '("\\*org-roam\\*"
+		 (display-buffer-in-side-window)
+		 (side . right)
+		 (slot . 0)
+		 (window-width . 0.33)
+		 (window-parameters . ((no-other-window . t)
+				       (no-delete-other-windows . t))))))
 
 ;; Snippets
 (use-package yasnippet
@@ -197,8 +219,7 @@
          (snippet-mode . yas-minor-mode-on))
   :init
   (setq yas-snippet-dirs
-	'("~/.emacs.d/snippets"
-	  "~/.emacs.d/straight/build/yasnippet-snippets/snippets")))
+	'("~/.emacs.d/snippets")))
 
 ;; Use this to install yasnippet-snippets
 ;(use-package yasnippet-snippets
