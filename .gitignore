@@ -1,4 +1,7 @@
 emacs/.emacs.d/straight/build/
 emacs/.emacs.d/straight/repos/
 emacs/.emacs.d/straight/build-cache.el
-
+emacs/.emacs.d/snippets/*/.yas-compiled-snippets.el
+emacs/.emacs.d/eln-cache/
+emacs/.emacs.d/auto-save-list/
+emacs/.emacs.d/var/
