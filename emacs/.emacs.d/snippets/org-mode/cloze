@@ -1,6 +1,5 @@
 # -*- mode: org -*-
-# name: Org-anki Cloze Deletion
-# key: cloze
+# name: Org-anki Cloze (Opening)
+# key: <clo
 # --
 * Cloze: $0
-

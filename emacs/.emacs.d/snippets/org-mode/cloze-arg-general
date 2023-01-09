@@ -1,0 +1,5 @@
+# -*- mode: org -*-
+# name: Cloze Argument (General)
+# key: <cla
+# --
+{{c${1:1}::$0::${3:...}}}
